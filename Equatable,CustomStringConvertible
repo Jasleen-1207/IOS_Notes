@@ -1,0 +1,64 @@
+import UIKit
+
+//class Shoe: CustomStringConvertible {
+//    let color: String
+//    let size: Int
+//    let hasLaces: Bool
+//    init(color: String, size: Int, hasLaces: Bool) {
+//        self.color = color
+//        self.size = size
+//        self.hasLaces = hasLaces
+//    }
+//description word should be written as description not descrip(shortcut)
+//    var description: String {
+//        return "Shoe(color: \(color),size: \(size),hasLaces:\(hasLaces))"
+//    }
+//}
+//let myShoe = Shoe(color: "Black", size: 7, hasLaces: true)
+//print(myShoe)
+
+
+//func should be equatable first then comparable
+struct Employee: Equatable {
+    let firstName: String
+    let lastName: String
+    let jobTitle: String
+    let phoneNumber: String
+    static func == (lhs: Employee, rhs: Employee)-> Bool{
+        //logic that determines if the value on lhs and rhs are equal
+        return lhs.firstName == rhs.firstName && lhs.lastName == rhs.lastName && lhs.jobTitle==rhs.jobTitle && lhs.phoneNumber == rhs.phoneNumber
+    }
+    static func < (lhs: Employee,rhs: Employee)-> Bool{
+        return lhs.firstName < rhs.firstName
+    }
+}
+struct Company{
+    let name: String
+    let employee: [Employee]
+}
+let employee1 = Employee(firstName: "Jasleen",lastName: "Kaur",jobTitle: "iOS Developer",phoneNumber: "1234")
+let employee2 = Employee(firstName: "Subhdeep",lastName: "Kaur",jobTitle: "FullStack Developer",phoneNumber: "1234-567")
+let employee3 = Employee(firstName: "Aditya",lastName: " ",jobTitle: "FullStack Developer",phoneNumber: "123-94")
+let employee4 = Employee(firstName: "Shruti",lastName: "Gupta",jobTitle: "Manager",phoneNumber: "123-874")
+let employee5 = Employee(firstName: "Simar",lastName: " ",jobTitle: "CEO",phoneNumber: "123-5674")
+let employees = [employee1,employee2,employee3,employee4,employee5]
+let sortedEmployee = employees.sorted(by:<)
+for employee in sortedEmployee{
+    print(employee)
+}
+
+
+protocol FullyNamed {
+    var fullName: String {get}
+    func sayFullName()
+}
+struct Person: FullyNamed {
+    var firstName: String
+    var lastName: String
+    var fullName: String {
+        return "\(firstName) \(lastName)"
+    }
+    func sayFullName() {
+        print(fullName)
+    }
+}
